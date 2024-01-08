@@ -1,0 +1,60 @@
+<!-- templates/gmail_sender/send_email.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <img src="{% static 'email.png' %}" alt="Your Logo" class="logo">
+        <h2 class="mb-4 text-center">Email Sender</h2>
+        <img src="{% static 'email.png' %}" alt="Your Logo" class="logo">
+        <form method="post" action="{% url 'send_email' %}" class="needs-validation" novalidate>
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="{{ form.to_email.id_for_label }}" class="form-label">To Email</label>
+            {{ form.to_email }}
+            <div class="invalid-feedback">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ form.subject.id_for_label }}" class="form-label">Subject</label>
+            {{ form.subject }}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+            {{ form.message }}
+          </div>
+
+          <!-- Replace the "Send Email" button with an image -->
+          <button type="submit" class="btn btn-primary d-flex align-items-center">
+            <img src="{% static 'send.png' %}" alt="Send Email" style="width: 24px; height: 24px; margin-right: 8px;cursor: pointer;">
+            <img id="clear-fields" src="{% static 'clear.png' %}" alt="Clear Fields" style="cursor: pointer; width: 24px; height: 24px; margin-left: 8px;">
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add custom CSS for styling -->
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Function to clear form fields
+      function clearFields() {
+        document.getElementById("id_to_email").value = "";
+        document.getElementById("id_subject").value = "";
+        document.getElementById("id_message").value = "";
+      }
+  
+      // Attach the clearFields function to the "Clear Fields" image click event
+      document.getElementById("clear-fields").addEventListener("click", clearFields);
+    });
+  </script>
+  
+{% endblock %}

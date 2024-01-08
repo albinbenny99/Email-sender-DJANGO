@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'path/to/bootstrap.css' %}">
+  <!-- Add custom CSS for styling -->
+  <style>
+    /* Add your custom CSS styles here */
+    .container {
+      margin-top: 5rem;
+    }
+
+    .logo {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .btn-primary {
+      cursor: pointer;
+    }
+  </style>
+  <title>Email Sender</title>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <img src="path/to/email.png" alt="Your Logo" class="logo">
+        <h2 class="mb-4 text-center">Email Sender</h2>
+        <img src="path/to/email.png" alt="Your Logo" class="logo">
+        <form method="post" action="send_email" class="needs-validation" novalidate>
+          <input type="hidden" name="csrfmiddlewaretoken" value="your_csrf_token">
+
+          <div class="mb-3">
+            <label for="to_email" class="form-label">To Email</label>
+            <input type="email" name="to_email" id="to_email" class="form-control" required>
+            <div class="invalid-feedback">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" name="subject" id="subject" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea name="message" id="message" class="form-control"></textarea>
+          </div>
+
+          <!-- Replace the "Send Email" button with an image -->
+          <button type="submit" class="btn btn-primary d-flex align-items-center">
+            <img src="path/to/send.png" alt="Send Email" style="width: 24px; height: 24px; margin-right: 8px;">
+            <img id="clear-fields" src="path/to/clear.png" alt="Clear Fields" style="width: 24px; height: 24px; margin-left: 8px;">
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Function to clear form fields
+      function clearFields() {
+        document.getElementById("to_email").value = "";
+        document.getElementById("subject").value = "";
+        document.getElementById("message").value = "";
+      }
+
+      // Attach the clearFields function to the "Clear Fields" image click event
+      document.getElementById("clear-fields").addEventListener("click", clearFields);
+    });
+  </script>
+</body>
+
+</html>

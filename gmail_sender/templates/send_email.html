@@ -1,0 +1,100 @@
+<!-- templates/gmail_sender/send_email.html -->
+
+
+{% load static %}
+
+<!-- templates/gmail_sender/send_email.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Email Sender</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <!-- Add any additional styles for the heading and image if needed -->
+  <style>
+    h1 {
+      font-family: sans-serif;
+      color: rgb(47, 181, 243);
+      text-align: center;
+      /* Add other styles as needed */
+    }
+
+    img {
+      margin-left: 10px; /* Adjust the margin as needed for spacing */
+      /* Add other styles as needed */
+    }
+
+    .header {
+      text-align: center;
+      
+    }
+
+    h1 {
+      display: inline-block;
+      margin-right: 10px;
+      
+      font-size: xx-large;
+      font-family: "Lucida Console", "Courier New", monospace;
+    }
+    .buttons{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="header">
+    <img src="{% static 'email.png' %}" alt="Email Sender Image">
+    <h1><span style="color: red;">E</span>mail <span style="color: red;">S</span>ender</h1>
+    <img src="{% static 'email.png' %}" alt="Email Sender Image">
+  </header>
+
+  <form method="post" action="{% url 'send_email' %}" class="contact" novalidate>
+    {% csrf_token %}
+    <fieldset class="contact-inner">
+      <p class="contact-input">
+        <label for="{{ form.to_email.id_for_label }}">To Email</label>
+        {{ form.to_email }}
+        
+      </p>
+
+      <p class="contact-input">
+        <label for="{{ form.subject.id_for_label }}">Subject</label>
+        {{ form.subject }}
+      </p>
+
+      <p class="contact-input">
+        <label for="{{ form.message.id_for_label }}">Message</label>
+        {{ form.message }}
+      </p>
+
+      <div class="buttons">
+        <!-- Replace the "Send Email" button with an image -->
+        <button type="submit" class="button-2">
+          <img src="{% static 'send.png' %}" alt="Send Message" style="cursor: pointer;">
+        </button>
+
+        <button type="reset" class="button-1">
+          <img id="clear-fields" src="{% static 'clear.png' %}" alt="Reset" style="cursor: pointer; margin-left: 10px;">
+        </button>
+      </div>
+    </fieldset>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Function to clear form fields
+      function clearFields() {
+        document.getElementById("id_to_email").value = "";
+        document.getElementById("id_subject").value = "";
+        document.getElementById("id_message").value = "";
+      }
+
+      // Attach the clearFields function to the "Clear Fields" image click event
+      document.getElementById("clear-fields").addEventListener("click", clearFields);
+    });
+  </script>
+  
+</body>
+</html>

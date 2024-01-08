@@ -1,0 +1,26 @@
+/* static/css/styles.css */
+
+/* Centered block styles */
+.center-block {
+  background-color: #f8f9fa; /* Light gray background color */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Email Sender title styles */
+.email-sender-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Sender and Clear images styles */
+.sender-clear-images {
+  margin-top: 20px;
+}
+
+.sender-clear-images img {
+  margin: 0 10px;
+  cursor: pointer;
+}
